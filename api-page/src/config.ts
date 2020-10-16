@@ -7,13 +7,14 @@ const throwIfNot = <T, K extends keyof T>(obj: Partial<T>, prop: K, msg?: string
     }
   }
   // Validate that we have our expected ENV variables defined!
-  ['REACT_APP_TICKETMASTER_API_KEY', 'REACT_APP_SPOONACULAR_API_KEY'].forEach(v => {
+  ['REACT_APP_TICKETMASTER_API_KEY', 'REACT_APP_SPOONACULAR_API_KEY', 'REACT_APP_RAPID_API_KEY'].forEach(v => {
     throwIfNot(process.env, v)
   })
   
   export interface IProcessEnv {
     REACT_APP_SPOONACULAR_API_KEY: string
     REACT_APP_TICKETMASTER_API_KEY: string
+    REACT_APP_RAPID_API_KEY: string
   }
   
   declare global {
