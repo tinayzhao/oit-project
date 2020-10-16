@@ -76,7 +76,7 @@ const Main = () => {
         e.preventDefault();
     };
 
-
+    //Oauth consumer creation makes it difficult to use, so eliminating Meetup API
     // const queryMeetupAPI: React.MouseEventHandler<HTMLDivElement> = (e) => {
     //     //get authorization token
     //     // const authEndpoint = "https://secure.meetup.com/oauth2/access";
@@ -134,9 +134,6 @@ const Main = () => {
                 <Col>
                     <Button onClick={ queryTicketmasterAPI }variant="warning">Ticketmaster API</Button>{' '}
                 </Col>
-                {/* <Col>
-                    <Button onClick={ queryMeetupAPI }variant="info">Meetup API</Button>{' '}
-                </Col> */}
             </Row>
             <Row>
                 <Col><p>{ response }</p></Col>
