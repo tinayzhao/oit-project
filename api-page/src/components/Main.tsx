@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 
 const Main = () => {
 
     const [response, setResponse] = useState("Nothing to display.");
 
     const querySpoonacularAPI: React.MouseEventHandler<HTMLDivElement> = (e) => {
-        // doesn't have option for breakfast, lunch, dinner
         const endpoint = "https://rapidapi.p.rapidapi.com/food/ingredients/autocomplete?query=apple&number=5&intolerances=egg";
         fetch(endpoint, {
             "method": "GET",
@@ -37,7 +36,7 @@ const Main = () => {
 
     const queryTicketmasterAPI: React.MouseEventHandler<HTMLDivElement> = (e) => {
         //searches based on location
-        const endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=" + process.env.REACT_APP_TICKETMASTER_API_KEY;
+        const endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=concert&countryCode=US&apikey=" + process.env.REACT_APP_TICKETMASTER_API_KEY;
         fetch(endpoint, {
             "method": "GET",
         })
@@ -63,8 +62,15 @@ const Main = () => {
             </Row>
             <Row>
                 <Col><Button onClick={ querySpoonacularAPI} variant="primary">Spoonacular API</Button>{' '}</Col>
-                <Col><Button variant="success">Eventbrite API</Button>{' '}</Col>
-                <Col><Button onClick={ queryTicketmasterAPI }variant="warning">Ticketmaster API</Button>{' '}</Col>
+                {/* <Col><Button variant="success">Eventbrite API</Button>{' '}</Col> */}
+                <Col>
+                    <Button onClick={ queryTicketmasterAPI }variant="warning">Ticketmaster API</Button>{' '}
+                    {/* <Form>
+                        <Form.Label>Keyword</Form.Label>
+
+                        <Button onClick={ queryTicketmasterAPI }variant="warning">Ticketmaster API</Button>{' '}
+                    </Form> */}
+                </Col>
             </Row>
             <Row>
                 <Col><p>{ response }</p></Col>
