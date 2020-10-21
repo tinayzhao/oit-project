@@ -1,11 +1,17 @@
 import React from 'react';
 import './App.css';
-import Main from './components/Main';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
 
 const App = () => {
 
   return (
-    <Main />
+    <Router>
+      <Route path="/signin" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
+      <Redirect from="/" to="/signin" />
+    </Router>
   );
 }
 
