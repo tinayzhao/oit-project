@@ -30,7 +30,7 @@ const Main = () => {
     };
 
     const querySpoonacularAPI: React.MouseEventHandler<HTMLDivElement> = (e) => {
-        const endpoint = "https://api.spoonacular.com/recipes/complexSearch?query=spinach&includeIngredients=cheese,tomato&number=10&apiKey=" + process.env.REACT_APP_SPOONACULAR_API_KEY;
+        const endpoint = "https://api.spoonacular.com/recipes/complexSearch?query=bred&number=10&apiKey=" + process.env.REACT_APP_SPOONACULAR_API_KEY;
         fetch(endpoint, {
             "method": "GET"
         })
