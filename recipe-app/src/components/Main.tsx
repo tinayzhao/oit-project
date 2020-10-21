@@ -49,13 +49,6 @@ const Main = () => {
         e.preventDefault();
     };
 
-
-
-    //Eventbrite API doesn't have search functionality anymore, but alternatives are 
-    //Retrieve an Event by ID — GET /v3/events/:event_id/ 
-    //List Events by Venue — GET /v3/venues/:venue_id/events/
-    //List Events by Organization — GET /v3/organizations/:organization_id/events/
-
     const queryTicketmasterAPI: React.MouseEventHandler<HTMLDivElement> = (e) => {
         const endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=concert&countryCode=US&apikey=" + process.env.REACT_APP_TICKETMASTER_API_KEY;
         fetch(endpoint, {
@@ -75,46 +68,6 @@ const Main = () => {
 
         e.preventDefault();
     };
-
-    //Oauth consumer creation makes it difficult to use, so eliminating Meetup API
-    // const queryMeetupAPI: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    //     //get authorization token
-    //     // const authEndpoint = "https://secure.meetup.com/oauth2/access";
-    //     // fetch(authEndpoint, {
-    //     //     "method": "GET",
-    //     //     "body":
-    //     // })
-    //     // .then(resp => {
-    //     //     console.log(resp);
-    //     //     return resp.text();
-    //     // })
-    //     // .then(txt => {
-    //     //     console.log(txt);
-    //     //     setResponse(txt);
-    //     // })
-    //     // .catch(err => {
-	//     //     console.error(err);
-    //     // });
-
-
-    //     const endpoint = "https://api.meetup.com/find/groups?text=lgbt";
-    //     fetch(endpoint, {
-    //         "method": "GET"
-    //     })
-    //     .then(resp => {
-    //         console.log(resp);
-    //         return resp.text();
-    //     })
-    //     .then(txt => {
-    //         console.log(txt);
-    //         setResponse(txt);
-    //     })
-    //     .catch(err => {
-	//         console.error(err);
-    //     });
-
-    //     e.preventDefault();
-    // };
  
     return (
         <Container>
