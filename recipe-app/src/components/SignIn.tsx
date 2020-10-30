@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Form, Jumbotron } from 'react-bootstrap';
 import { AzureAD } from 'react-aad-msal';
@@ -20,7 +22,7 @@ const SignIn = () => {
         }
     };
 
-    const onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         //use Azure for authentication?
 
 

@@ -22,16 +22,16 @@ const SignUp = () => {
     }
   };
 
-  const onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //use Azure for authentication? 
+  // const onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   //use Azure for authentication? 
 
-  };
+  // };
  
     return (
         <div>
         <Jumbotron>
             <h1>Welcome!</h1>
-            <Form onSubmit={onSubmit}>
+            <Form>
             <Form.Group>
                 <Form.Label>Name</Form.Label>
                     <Form.Control name="username" onChange={onChange} type="username" />

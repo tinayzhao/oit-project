@@ -48,26 +48,6 @@ const Main = () => {
 
         e.preventDefault();
     };
-
-    const queryTicketmasterAPI: React.MouseEventHandler<HTMLDivElement> = (e) => {
-        const endpoint = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=concert&countryCode=US&apikey=" + process.env.REACT_APP_TICKETMASTER_API_KEY;
-        fetch(endpoint, {
-            "method": "GET",
-        })
-        .then(resp => {
-            console.log(resp);
-            return resp.text();
-        })
-        .then(txt => {
-            console.log(txt);
-            setResponse(txt);
-        })
-        .catch(err => {
-	        console.error(err);
-        });
-
-        e.preventDefault();
-    };
  
     return (
         <Container>
@@ -83,9 +63,6 @@ const Main = () => {
                 </Col>
                 <Col>
                     <Button onClick={ querySpoonacularAPI} variant="success">Spoonacular API</Button>{' '}
-                </Col>
-                <Col>
-                    <Button onClick={ queryTicketmasterAPI }variant="warning">Ticketmaster API</Button>{' '}
                 </Col>
             </Row>
             <Row>
