@@ -67,7 +67,7 @@ const Pantry = () => {
 
     return (
         <div>
-            <h1>What's in your pantry?</h1>
+            <h1>What's in your pantry? 🛍</h1>
             <Form>
                 <Form.Group controlId="formBasicSearch">
                     <Form.Control type="text" placeholder="Type to Search" onChange={onChange} />

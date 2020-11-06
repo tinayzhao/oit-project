@@ -77,9 +77,9 @@ const Preferences = () => {
                     </Dropdown.Menu>
                 </Dropdown>
 
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicEquipment">
                     <Form.Label>What kitchen equipment do you own?</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" /> 
+                    <Form.Control type="text" placeholder="Enter equipment" /> 
                 </Form.Group>
 
                 <Dropdown>
@@ -117,12 +117,9 @@ const Preferences = () => {
                 </Dropdown>
                 
                 <Button variant="primary" type="submit">
-                    Submit
+                    Next
                 </Button>
-
             </Form>
-
-            <Button>Next</Button>
         </div>
     );
 }

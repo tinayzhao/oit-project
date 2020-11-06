@@ -7,7 +7,7 @@ const logger = new Logger(
   },
   {
     level: LogLevel.Verbose,
-    piiLoggingEnabled: false
+    piiLoggingEnabled: true
   }
 );
 
@@ -20,7 +20,8 @@ export const authProvider = new MsalAuthProvider(
       authority: "https://login.microsoftonline.com/common",
       clientId: "c1b688bb-2564-40ad-a045-e089f7d748b7",
       postLogoutRedirectUri: window.location.origin,
-      redirectUri: window.location.origin,
+      redirectUri: "http://localhost:3000/#/pantry",
+      // redirectUri: "https://food-book.azurewebsites.net/.auth/login/aad/callback",
       validateAuthority: true,
 
       // After being redirected to the "redirectUri" page, should user
