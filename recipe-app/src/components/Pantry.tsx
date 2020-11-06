@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Card, Button } from 'react-bootstrap';
+import { Form, Card, Button, Nav } from 'react-bootstrap';
 
 const Pantry = () => {
 
@@ -67,6 +67,11 @@ const Pantry = () => {
 
     return (
         <div>
+            <Nav className="justify-content-end">
+                <Nav.Item>
+                    <Nav.Link>Sign Out</Nav.Link>
+                </Nav.Item>
+            </Nav>
             <h1>What's in your pantry? 🛍</h1>
             <Form>
                 <Form.Group controlId="formBasicSearch">
