@@ -6,6 +6,7 @@ import {
     AuthenticationState,
     IAzureADFunctionProps
   } from "react-aad-msal";
+import { Link } from 'react-router-dom';
 
 const Preferences = () => {
 
@@ -14,17 +15,6 @@ const Preferences = () => {
     const [equipment, setEquipment] = useState("");
     const [diet, setDiet] = useState("");
     const [intolerances, setIntolerances] = useState("");
-
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const val = e.currentTarget.value;
-        switch(e.currentTarget.name) {
-        case "cuisine":
-            setCuisine(val);
-            break;
-        case "mealType":
-            setMealType(val);
-        }
-    };
 
     return (
         <AzureAD provider={authProvider} forceLogin={true}>
@@ -41,8 +31,8 @@ const Preferences = () => {
                             <Dropdown>
                                 <Dropdown.Toggle variant="primary" id="dropdown-basic">What's your everyday cuisine?</Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item>African</Dropdown.Item>
-                                    <Dropdown.Item>American</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setCuisine("African")}>African</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setCuisine("American")}>American</Dropdown.Item>
                                     <Dropdown.Item>British</Dropdown.Item>
                                     <Dropdown.Item>Cajun</Dropdown.Item>
                                     <Dropdown.Item>Caribbean</Dropdown.Item>
@@ -73,7 +63,7 @@ const Preferences = () => {
                             <Dropdown>
                                 <Dropdown.Toggle variant="primary" id="dropdown-basic">What meal type would you like?</Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item>Main Course</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setMealType("Main Course")}>Main Course</Dropdown.Item>
                                     <Dropdown.Item>Side Dish</Dropdown.Item>
                                     <Dropdown.Item>Dessert</Dropdown.Item>
                                     <Dropdown.Item>Appetizer</Dropdown.Item>
@@ -93,7 +83,7 @@ const Preferences = () => {
 
                             <Form.Group controlId="formBasicEquipment">
                                 <Form.Label>What kitchen equipment do you own?</Form.Label>
-                                <Form.Control type="text" placeholder="Enter equipment" /> 
+                                <Form.Control onChange={(e) => setEquipment(e.currentTarget.value)} type="text" placeholder="Enter equipment" /> 
                             </Form.Group>
 
                             <Dropdown>
@@ -101,7 +91,7 @@ const Preferences = () => {
                                 <Dropdown.Menu>
                                     <Dropdown.Item>Gluten Free</Dropdown.Item>
                                     <Dropdown.Item>Ketogenic</Dropdown.Item>
-                                    <Dropdown.Item>Vegetarian</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setDiet("Vegetarian")}>Vegetarian</Dropdown.Item>
                                     <Dropdown.Item>Lacto-Vegetarian</Dropdown.Item>
                                     <Dropdown.Item>Ovo-Vegetarian</Dropdown.Item>
                                     <Dropdown.Item>Vegan</Dropdown.Item>
@@ -124,15 +114,26 @@ const Preferences = () => {
                                     <Dropdown.Item>Sesame</Dropdown.Item>
                                     <Dropdown.Item>Shellfish</Dropdown.Item>
                                     <Dropdown.Item>Soy</Dropdown.Item>
-                                    <Dropdown.Item>Sulfite</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setDiet("Sulfite")}>Sulfite</Dropdown.Item>
                                     <Dropdown.Item>Tree Nut</Dropdown.Item>
                                     <Dropdown.Item>Wheat</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                             
-                            <Button variant="primary" type="submit">
-                                Next
-                            </Button>
+                            <Link to={{
+                                pathname: "pantry",
+                                state: {
+                                    cuisine: cuisine,
+                                    mealType: mealType,
+                                    equipment: equipment,
+                                    diet: diet, 
+                                    intolerances: intolerances
+                                }
+                            }}>
+                                <Button variant="primary" type="submit">
+                                    Next
+                                </Button>
+                            </Link>
                         </Form>
                     </div>
                 );}}

@@ -19,14 +19,14 @@ export const authProvider = new MsalAuthProvider(
     auth: {
       authority: "https://login.microsoftonline.com/common",
       clientId: "c1b688bb-2564-40ad-a045-e089f7d748b7",
-      postLogoutRedirectUri: window.location.origin,
-      redirectUri: "http://localhost:3000/#/pantry",
+      // postLogoutRedirectUri: window.location.origin,
+      redirectUri: "http://localhost:3000/#/welcome",
       // redirectUri: "https://food-book.azurewebsites.net/.auth/login/aad/callback",
-      validateAuthority: true,
+      // validateAuthority: true,
 
       // After being redirected to the "redirectUri" page, should user
       // be redirected back to the Url where their login originated from?
-      navigateToLoginRequestUrl: false
+      // navigateToLoginRequestUrl: false
     },
     // Enable logging of MSAL events for easier troubleshooting.
     // This should be disabled in production builds.
@@ -39,7 +39,7 @@ export const authProvider = new MsalAuthProvider(
     }
   },
   {
-    scopes: ["openid"]
+    scopes: ["openid", "profile"]
   },
   {
     loginType: LoginType.Popup,

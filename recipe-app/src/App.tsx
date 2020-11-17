@@ -5,17 +5,26 @@ import Dashboard from './components/Dashboard';
 import Preferences from './components/Preferences';
 import Pantry from './components/Pantry';
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 
 const App = () => {
 
   return (
-    <Router>
-      <Route path="/welcome" component={Welcome} />
-      <Route path="/home" component={Dashboard} />
-      <Route path="/preferences" component={Preferences} />
-      <Route path="/pantry" component={Pantry} />
-      <Redirect from="/" to="/welcome" />
+    <div>
+      {/* <Nav className="justify-content-end">
+            <Nav.Item>
+                <Nav.Link>Profile</Nav.Link>
+            </Nav.Item>
+      </Nav> */}
+      <Router>
+        <Route path="/welcome" component={Welcome} />
+        <Route path="/home" component={Dashboard}/>
+        <Route path="/preferences" component={Preferences}/>
+        <Route path="/pantry" component={Pantry} />
+        {/* <Redirect from="/" to="/preferences" /> */}
     </Router>
+    </div>
+    
   );
 }
 

@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, FunctionComponent } from "react";
 import { Form, Card, Button, Nav } from 'react-bootstrap';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
-const Pantry = () => {
+type Props = {
+    location: RouteComponentProps<{ bla: string }, {}, { state: any }>;
+};
+
+const Pantry:FunctionComponent<Props> = (props) => {
+    const stateProps = props.location;
 
     const [suggested, setSuggested] = useState<string[]>(["egg", "tomato", "cheese", "banana", "milk"]);
     const [selected, setSelected] = useState<string[]>([]);
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("HERE");
+        console.log(stateProps);
         const val = e.currentTarget.value;
         const endpoint = "https://api.spoonacular.com/food/ingredients/autocomplete?query=" + val 
         + "&apiKey=" + process.env.REACT_APP_SPOONACULAR_API_KEY;
@@ -67,11 +75,11 @@ const Pantry = () => {
 
     return (
         <div>
-            <Nav className="justify-content-end">
+            {/* <Nav className="justify-content-end">
                 <Nav.Item>
                     <Nav.Link>Sign Out</Nav.Link>
                 </Nav.Item>
-            </Nav>
+            </Nav> */}
             <h1>What's in your pantry? 🛍</h1>
             <Form>
                 <Form.Group controlId="formBasicSearch">
@@ -84,7 +92,15 @@ const Pantry = () => {
             </Form>
             <h2>Selected</h2>
             {renderSelected.call(window)}
-            <Button>Submit</Button>
+            <Link to={{
+                pathname: "home",
+                state: {
+                    // ...stateProps,
+                   ingredients: selected
+                }
+            }}>
+                <Button>Submit</Button>
+            </Link>
         </div>
     );
    
