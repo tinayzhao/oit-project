@@ -9,9 +9,6 @@ import {
   } from "react-aad-msal";
 
 const Welcome = () => {
-
-    
-
  
     return (
         <AzureAD provider={authProvider} forceLogin={true}>
