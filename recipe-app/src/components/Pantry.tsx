@@ -11,7 +11,8 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
         };
     }
 
-    onChange: any = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //search change
+    onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log("CHECKING");
         const val = e.currentTarget.value;
         const endpoint = 
@@ -62,6 +63,7 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
         );
     };
 
+    //checkbox change
     changeSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log("CHANGING");
         console.log(this.props.getIngredients());

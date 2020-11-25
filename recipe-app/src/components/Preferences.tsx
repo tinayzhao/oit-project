@@ -120,20 +120,11 @@ const Preferences = () => {
                                 </Dropdown.Menu>
                             </Dropdown>
                             
-                            <Link to={{
-                                pathname: "pantry",
-                                state: {
-                                    cuisine: cuisine,
-                                    mealType: mealType,
-                                    equipment: equipment,
-                                    diet: diet, 
-                                    intolerances: intolerances
-                                }
-                            }}>
-                                <Button variant="primary" type="submit">
+                                <Button 
+                                // onClick={() => this.props.setStep("pantry")} 
+                                variant="primary" type="submit">
                                     Next
                                 </Button>
-                            </Link>
                         </Form>
                     </div>
                 );}}

@@ -4,14 +4,14 @@ import Preferences from './Preferences';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export default class Dashboard extends Component{
+export default class Dashboard extends Component<{}, {ingredients: string[]}>{
 
     cuisine: string;
     mealType: string;
     equipment: string;
     diet: string;
     intolerances: string;
-    ingredients: string[];
+    // ingredients: string[];
     step: string;
     
     constructor(props: any) {
@@ -21,9 +21,11 @@ export default class Dashboard extends Component{
         this.equipment = "";
         this.diet = "";
         this.intolerances = "";
-        this.ingredients = [];
+        // this.ingredients = [];
         this.step = "pantry";
-        console.log("in constructor " + this.step);
+        this.state = {
+            ingredients: []
+        }
     }
 
     setCuisine(cuisine: string) {
@@ -47,11 +49,12 @@ export default class Dashboard extends Component{
     }
 
     setIngredients = (ingredients: string[]) => {
-        this.ingredients = ingredients;
+        this.setState({ingredients: ingredients});
+        // this.state.ingredients = ingredients;
     }
 
     getIngredients = () => {
-        return this.ingredients;
+        return this.state.ingredients;
     }
 
     setStep = (step: string) => {
