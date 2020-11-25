@@ -84,7 +84,7 @@ const Welcome = () => {
                         );
                     } else {
                         return (
-                            <Redirect to="/preferences" />
+                            <Redirect to="/home" />
                         );
                     }
                 }}
@@ -92,55 +92,6 @@ const Welcome = () => {
         
     );
 
-
-    
-    
-    
-    
-    
-    
-    const formStyle = {
-      width: 300,
-      fontFamily: 'Poppins',
-      marginTop: 30,
-      marginLeft: 130
-    };
-    
-    const submitStyle = {
-      backgroundColor: '#EA655D',
-      outline: 'none !important',
-      fontFamily: 'Poppins',
-      marginLeft: 90,
-      width: 126,
-      marginTop: 30,
-      fontSize: 13
-    };
-    
-    const inputStyle = {
-      backgroundColor: '#F3F3F4'
-    };
-    
-    const signupStyle = {
-      textAlign: 'center',
-      fontSize: 13,
-      marginTop: 20,
-      fontFamily: 'Poppins',
-      color: 'gray'
-    };
-    
-    const labelStyle = {
-      fontSize: 13,
-      fontWeight: 'bold',
-      color: 'black'
-    };
-    
-    const linkStyle = {
-      color: '#EA655D'
-    };
-    
-    const submitlinkStyle = {
-        color: 'white'
-    };
 }
 
 export default Welcome;
