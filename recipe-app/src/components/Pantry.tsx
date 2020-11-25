@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Card, Button, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export default class Pantry extends Component<{setIngredients: Function, getIngredients: Function}, {suggested: string[]}>{
+export default class Pantry extends Component<{setIngredients: Function, getIngredients: Function, setStep: Function}, {suggested: string[]}>{
 
     constructor(props: any) {
         super(props);
@@ -96,9 +96,7 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
                 </Form>
                 <h2>Selected</h2>
                 <div key={this.props.getIngredients().toString()}>{this.renderSelected.call(window)}</div>
-                <Link to={{pathname: "home"}}>
-                    <Button>Submit</Button>
-                </Link>
+                <Button onClick={() => this.props.setStep("home")}>Submit</Button>
             </div>
         );
     }

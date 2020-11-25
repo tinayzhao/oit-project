@@ -21,11 +21,6 @@ const SignUp = () => {
         setPassword(val);
     }
   };
-
-  // const onSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   //use Azure for authentication? 
-
-  // };
  
     return (
         <div>

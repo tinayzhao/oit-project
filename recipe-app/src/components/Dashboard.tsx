@@ -23,6 +23,7 @@ export default class Dashboard extends Component{
         this.intolerances = "";
         this.ingredients = [];
         this.step = "pantry";
+        console.log("in constructor " + this.step);
     }
 
     setCuisine(cuisine: string) {
@@ -53,12 +54,18 @@ export default class Dashboard extends Component{
         return this.ingredients;
     }
 
+    setStep = (step: string) => {
+        this.step = step;
+        console.log("updated step to " + this.step);
+        this.forceUpdate();
+    }
 
     render() {
-
+        console.log(this.step);
         const pantryProps = {
             setIngredients: this.setIngredients.bind(this),
-            getIngredients: this.getIngredients.bind(this)
+            getIngredients: this.getIngredients.bind(this),
+            setStep: this.setStep.bind(this)
         }
 
         const responsive = {
@@ -67,7 +74,7 @@ export default class Dashboard extends Component{
               items: 6,
               slidesToSlide: 6 // optional, default to 1.
             }
-          };
+        };
     
         const recipes = [
             { 
@@ -93,9 +100,9 @@ export default class Dashboard extends Component{
         ));
 
         let comp : any;
-        if (this.step == "preferences") {
+        if (this.step === "preferences") {
             comp = <Preferences />
-        } else if (this.step == "pantry") {
+        } else if (this.step === "pantry") {
             comp = <Pantry {... pantryProps} />
         } else {
             comp = 
