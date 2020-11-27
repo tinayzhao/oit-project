@@ -17,7 +17,7 @@ const Welcome = () => {
         height:420,
         backgroundColor: 'white',
         marginTop: 96
-      };
+    };
 
     const backgroundStyle = {
         backgroundImage: 'url("/images/welcome.png")',

@@ -33,7 +33,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                     <Nav.Link onSelect={logout}>Sign Out</Nav.Link>
                                 </Nav.Item>
                             </Nav>
-                            <h1>Hello Tina 👋 Let's get to know you better.</h1>
+                            <h1>Hello! 👋 Let's get to know you better.</h1>
                             <Form>
                                 <Dropdown>
                                     <Dropdown.Toggle variant="primary" id="dropdown-basic">What's your everyday cuisine?</Dropdown.Toggle>
