@@ -24,7 +24,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
 
     render = () => {
         return (
-            <AzureAD provider={authProvider} forceLogin={true}>
+            <AzureAD provider={authProvider}>
                 {({ login, logout, accountInfo, authenticationState, error}: IAzureADFunctionProps) => {
                     return (
                         <div>

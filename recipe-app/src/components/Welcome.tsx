@@ -65,7 +65,7 @@ const Welcome = () => {
     };
  
     return (
-        <AzureAD provider={authProvider} forceLogin={true}>
+        <AzureAD provider={authProvider}>
             {({ login, logout, accountInfo, authenticationState, error}: IAzureADFunctionProps) => {
                 const isInProgress =
                     authenticationState === AuthenticationState.InProgress;
