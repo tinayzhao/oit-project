@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Card, Button, Nav } from 'react-bootstrap';
+import { Form, Card, Button, Nav, Row, Col } from 'react-bootstrap';
 import { authProvider } from "./authProvider";
 import {
     AzureAD,
@@ -101,8 +101,38 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
             marginTop: 70,
             color: "#685DEA",
             textAlign: 'center' as 'center',
+            fontFamily: 'Poppins',
+            fontWeight: 'bold' as 'bold'
+        };
+
+        const formStyle = {
             fontFamily: 'Poppins'
         };
+
+        const suggestedHeaderStyle = {
+            marginTop: 30,
+            fontFamily: 'Poppins',
+            fontWeight: 'bold' as 'bold',
+            fontSize: 20,
+            textAlign: 'center' as 'center'
+        };
+
+        const navButtonStyle = {
+            backgroundColor: "#685DEA",
+            textAlign: 'center' as 'center',
+            fontFamily: 'Poppins',
+            marginTop: 30
+        };
+
+        const backButtonAlign = {
+            marginRight: 5
+        };
+
+        const submitButtonAlign = {
+            marginLeft: 5
+        };
+
+        
 
         return (
             <AzureAD provider={authProvider}>
@@ -115,18 +145,33 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
                             </Nav.Item>
                         </Nav>
                         <h3 style={greetingStyle}>What's in your pantry? 🛍</h3>
-                        <Form>
-                            <Form.Group controlId="formBasicSearch">
-                                <Form.Control type="text" placeholder="Type to Search" onChange={this.onChange} />
-                            </Form.Group>
-                        </Form>
-                        <h2>Suggested</h2>
-                        <Form>
-                            {this.renderSuggested.call(window)}
-                        </Form>
-                        <h2>Selected</h2>
-                        <div key={this.props.getIngredients().toString()}>{this.renderSelected.call(window)}</div>
-                        <Button onClick={() => this.props.setStep("home")}>Submit</Button>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} sm={4} md={4}>
+                                <Form>
+                                    <Form.Group controlId="formBasicSearch">
+                                        <Form.Control style={formStyle} type="text" placeholder="Type to Search" onChange={this.onChange} />
+                                    </Form.Group>
+                                </Form>
+                            </Col>
+                        </Row>
+                        <h3 style={suggestedHeaderStyle}>Suggested</h3>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} sm={4} md={4}>
+                                <Form>{this.renderSuggested.call(window)}</Form>
+                            </Col>
+                        </Row>
+                        
+                        <h3 style={suggestedHeaderStyle}>Selected</h3>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} sm={4} md={4}>
+                                <div key={this.props.getIngredients().toString()}>{this.renderSelected.call(window)}</div>
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                                <Button style={{...navButtonStyle, ...backButtonAlign}} onClick={() => this.props.setStep("preferences")}>Back</Button>
+                                <Button style={{...navButtonStyle, ...submitButtonAlign}} onClick={() => this.props.setStep("home")}>Submit</Button>
+                        </Row>
+                        
                     </div>
                 );
             }}
