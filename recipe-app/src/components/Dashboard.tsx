@@ -11,7 +11,6 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
     equipment: string;
     diet: string;
     intolerances: string;
-    // ingredients: string[];
     step: string;
     
     constructor(props: any) {
@@ -21,8 +20,7 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
         this.equipment = "";
         this.diet = "";
         this.intolerances = "";
-        // this.ingredients = [];
-        this.step = "pantry";
+        this.step = "preferences";
         this.state = {
             ingredients: []
         }
@@ -50,7 +48,6 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
 
     setIngredients = (ingredients: string[]) => {
         this.setState({ingredients: ingredients});
-        // this.state.ingredients = ingredients;
     }
 
     getIngredients = () => {
@@ -63,17 +60,27 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
         this.forceUpdate();
     }
 
+    
+
     render() {
-        console.log(this.step);
+        const preferenceProps = {
+            setCuisine: this.setCuisine.bind(this),
+            setMealType: this.setMealType.bind(this),
+            setEquipment: this.setEquipment.bind(this),
+            setDiet: this.setDiet.bind(this),
+            setIntolerances: this.setIntolerances.bind(this),
+            setStep: this.setStep.bind(this)
+        };
+
         const pantryProps = {
             setIngredients: this.setIngredients.bind(this),
             getIngredients: this.getIngredients.bind(this),
             setStep: this.setStep.bind(this)
-        }
+        };
 
         const responsive = {
             desktop: {
-              breakpoint: { max: 3000, min: 1024 },
+            breakpoint: { max: 3000, min: 1024 },
               items: 6,
               slidesToSlide: 6 // optional, default to 1.
             }
@@ -104,7 +111,7 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
 
         let comp : any;
         if (this.step === "preferences") {
-            comp = <Preferences />
+            comp = <Preferences {... preferenceProps}/>
         } else if (this.step === "pantry") {
             comp = <Pantry {... pantryProps} />
         } else {
