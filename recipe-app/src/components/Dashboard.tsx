@@ -243,7 +243,7 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
                     <div>
                         <Nav className="justify-content-end" style={navStyle}>
                             <Nav.Item>
-                                <Nav.Link style={linkStyle} onClick={this.goBack} href="#home" disabled={this.pageIdx == 0 || this.pageIdx == this.pages.length - 1}>Back</Nav.Link>
+                                <Nav.Link style={linkStyle} onClick={this.goBack} href="#home" disabled={this.pageIdx == 0}>Back</Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link style={linkStyle} onClick={logout} href="#welcome">Sign Out</Nav.Link>

@@ -59,7 +59,11 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
 
     renderSelected = () => {
         const cardStyle = {
-            borderColor: "#685DEA"
+            borderColor: "#685DEA",
+            color: "#685DEA",
+            borderRadius: 30,
+            textAlign: 'center' as 'center',
+            borderWidth: "thin"
         };
         return (
             this.props.getIngredients().map((ingredient: any) =>
@@ -91,14 +95,6 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
     };
 
     render = () => {
-
-        const navStyle = {
-            backgroundColor: "#685DEA"
-        };
-
-        const linkStyle = {
-            color: "white"
-        };
 
         const greetingStyle = {
             marginTop: 70,
