@@ -7,7 +7,6 @@ import {
     AuthenticationState,
     IAzureADFunctionProps
   } from "react-aad-msal";
-import './Welcome.css';
 
 const Welcome = () => {
 
