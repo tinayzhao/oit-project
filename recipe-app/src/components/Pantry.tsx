@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Card, Button, Nav, Row, Col } from 'react-bootstrap';
+import { Form, Card, Button, Nav, Row, Col, CardColumns } from 'react-bootstrap';
 import { authProvider } from "./authProvider";
 import {
     AzureAD,
@@ -12,7 +12,7 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
     constructor(props: any) {
         super(props);
         this.state = {
-            suggested: ["egg", "tomato", "cheese", "banana"]
+            suggested: ["egg", "tomato", "cheese", "salsa"]
         };
     }
 
@@ -58,9 +58,12 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
     };
 
     renderSelected = () => {
+        const cardStyle = {
+            borderColor: "#685DEA"
+        };
         return (
             this.props.getIngredients().map((ingredient: any) =>
-                <Card key={ingredient}>
+                <Card style={cardStyle} key={ingredient}>
                     <Card.Body>{ingredient}</Card.Body>
                 </Card>
             )
@@ -164,7 +167,11 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
                         <h3 style={suggestedHeaderStyle}>Selected</h3>
                         <Row className="justify-content-md-center">
                             <Col xs={12} sm={4} md={4}>
-                                <div key={this.props.getIngredients().toString()}>{this.renderSelected.call(window)}</div>
+                                <CardColumns>
+                                    {/* <div key={this.props.getIngredients().toString()}> */}
+                                        {this.renderSelected.call(window)}
+                                        {/* </div> */}
+                                </CardColumns>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center">
