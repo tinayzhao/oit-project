@@ -4,14 +4,14 @@ import Preferences from './Preferences';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-export default class Dashboard extends Component<{}, {ingredients: string[]}>{
+export default class Dashboard extends Component<{}, {ingredients: string[], step: string}>{
 
     cuisine: string;
     mealType: string;
     equipment: string;
     diet: string;
     intolerances: string;
-    step: string;
+    // step: string;
     recipes: any[];
     
     constructor(props: any) {
@@ -21,10 +21,11 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
         this.equipment = "";
         this.diet = "";
         this.intolerances = "";
-        this.step = "preferences";
+        // this.step = "preferences";
         this.recipes = [];
         this.state = {
-            ingredients: []
+            ingredients: [],
+            step: "preferences"
         }
     }
 
@@ -57,9 +58,10 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
     }
 
     setStep = (step: string) => {
-        this.step = step;
-        console.log("updated step to " + this.step);
-        this.forceUpdate();
+        this.setState({step: step});
+        // this.step = step;
+        console.log("updated step to " + this.state.step);
+        // this.forceUpdate();
     }
 
     queryRecipes = () => {
@@ -145,9 +147,9 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
         };
 
         let comp : any;
-        if (this.step === "preferences") {
+        if (this.state.step === "preferences") {
             comp = <Preferences {... preferenceProps}/>
-        } else if (this.step === "pantry") {
+        } else if (this.state.step === "pantry") {
             comp = <Pantry {... pantryProps} />
         } else {
             this.queryRecipes();

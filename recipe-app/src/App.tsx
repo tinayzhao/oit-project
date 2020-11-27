@@ -11,11 +11,6 @@ const App = () => {
 
   return (
     <div>
-      {/* <Nav className="justify-content-end">
-            <Nav.Item>
-                <Nav.Link>Profile</Nav.Link>
-            </Nav.Item>
-      </Nav> */}
       <Router>
         <Route path="/welcome" component={Welcome} />
         <Route path="/home" component={Dashboard}/>
