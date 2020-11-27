@@ -13,7 +13,7 @@ import {
     setEquipment: Function;
     setDiet: Function;
     setIntolerances: Function;
-    setStep: Function;
+    goForward: Function;
   }
 
 export default class Preferences extends Component<PreferenceProps, {}>{
@@ -54,6 +54,10 @@ export default class Preferences extends Component<PreferenceProps, {}>{
             fontFamily: 'Poppins'
         };
 
+        const boxAlign = {
+            marginLeft: 30
+        };
+
         const nextStyle = {
             textAlign: 'center' as 'center',
             marginTop: 50,
@@ -66,11 +70,6 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                 {({ login, logout, accountInfo, authenticationState, error}: IAzureADFunctionProps) => {
                     return (
                         <div>
-                            <Nav className="justify-content-end" style={navStyle}>
-                                <Nav.Item>
-                                    <Nav.Link style={linkStyle} onClick={logout} href="#welcome">Sign Out</Nav.Link>
-                                </Nav.Item>
-                            </Nav>
                             <h3 style={greetingStyle}>Hello{accountInfo != null ? " " + accountInfo.account.name : ""} 👋 Let's get to know you better!</h3>
                             <Form>
                                 <Dropdown style={dropdownAlign}>
@@ -128,7 +127,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                     <Col xs={12} sm={4} md={4}>
                                         <Form.Group controlId="formBasicEquipment" style={dropdownAlign}>
                                             <Form.Label style={formStyle}>What kitchen equipment do you own?</Form.Label>
-                                            <Form.Control style={formStyle} onChange={(e) => this.props.setEquipment(e.currentTarget.value)} type="text" placeholder="Enter equipment" /> 
+                                            <Form.Control style={{...formStyle, ...boxAlign}} onChange={(e) => this.props.setEquipment(e.currentTarget.value)} type="text" placeholder="Enter equipment" /> 
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -170,7 +169,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
 
                                 <Row className="justify-content-md-center">
                                     {/* <Col xs={12} sm={5} md={3}> */}
-                                        <Button onClick={() => this.props.setStep("pantry")} style={nextStyle} type="submit">
+                                        <Button onClick={() => this.props.goForward()} style={nextStyle} type="submit">
                                             Next
                                         </Button>
                                     {/* </Col> */}

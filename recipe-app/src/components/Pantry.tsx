@@ -7,7 +7,7 @@ import {
     IAzureADFunctionProps
   } from "react-aad-msal";
 
-export default class Pantry extends Component<{setIngredients: Function, getIngredients: Function, setStep: Function}, {suggested: string[]}>{
+export default class Pantry extends Component<{setIngredients: Function, getIngredients: Function, goForward: Function}, {suggested: string[]}>{
 
     constructor(props: any) {
         super(props);
@@ -139,11 +139,11 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
             {({ login, logout, accountInfo, authenticationState, error}: IAzureADFunctionProps) => {
                 return (
                     <div>
-                        <Nav className="justify-content-end" style={navStyle}>
+                        {/* <Nav className="justify-content-end" style={navStyle}>
                             <Nav.Item>
                                 <Nav.Link style={linkStyle} onClick={logout} href="#welcome">Sign Out</Nav.Link>
                             </Nav.Item>
-                        </Nav>
+                        </Nav> */}
                         <h3 style={greetingStyle}>What's in your pantry? 🛍</h3>
                         <Row className="justify-content-md-center">
                             <Col xs={12} sm={4} md={4}>
@@ -168,8 +168,8 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center">
-                                <Button style={{...navButtonStyle, ...backButtonAlign}} onClick={() => this.props.setStep("preferences")}>Back</Button>
-                                <Button style={{...navButtonStyle, ...submitButtonAlign}} onClick={() => this.props.setStep("home")}>Submit</Button>
+                                {/* <Button style={{...navButtonStyle, ...backButtonAlign}} onClick={() => this.props.setStep("preferences")}>Back</Button> */}
+                                <Button style={navButtonStyle} onClick={() => this.props.goForward()}>Submit</Button>
                         </Row>
                         
                     </div>
