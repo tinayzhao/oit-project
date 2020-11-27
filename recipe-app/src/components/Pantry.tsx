@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Form, Card, Button, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { authProvider } from "./authProvider";
+import {
+    AzureAD,
+    AuthenticationState,
+    IAzureADFunctionProps
+  } from "react-aad-msal";
 
 export default class Pantry extends Component<{setIngredients: Function, getIngredients: Function, setStep: Function}, {suggested: string[]}>{
 
@@ -83,22 +88,49 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
     };
 
     render = () => {
+
+        const navStyle = {
+            backgroundColor: "#685DEA"
+        };
+
+        const linkStyle = {
+            color: "white"
+        };
+
+        const greetingStyle = {
+            marginTop: 70,
+            color: "#685DEA",
+            textAlign: 'center' as 'center',
+            fontFamily: 'Poppins'
+        };
+
         return (
-            <div>
-                <h1>What's in your pantry? 🛍</h1>
-                <Form>
-                    <Form.Group controlId="formBasicSearch">
-                        <Form.Control type="text" placeholder="Type to Search" onChange={this.onChange} />
-                    </Form.Group>
-                </Form>
-                <h2>Suggested</h2>
-                <Form>
-                    {this.renderSuggested.call(window)}
-                </Form>
-                <h2>Selected</h2>
-                <div key={this.props.getIngredients().toString()}>{this.renderSelected.call(window)}</div>
-                <Button onClick={() => this.props.setStep("home")}>Submit</Button>
-            </div>
+            <AzureAD provider={authProvider}>
+            {({ login, logout, accountInfo, authenticationState, error}: IAzureADFunctionProps) => {
+                return (
+                    <div>
+                        <Nav className="justify-content-end" style={navStyle}>
+                            <Nav.Item>
+                                <Nav.Link style={linkStyle} onClick={logout} href="#welcome">Sign Out</Nav.Link>
+                            </Nav.Item>
+                        </Nav>
+                        <h3 style={greetingStyle}>What's in your pantry? 🛍</h3>
+                        <Form>
+                            <Form.Group controlId="formBasicSearch">
+                                <Form.Control type="text" placeholder="Type to Search" onChange={this.onChange} />
+                            </Form.Group>
+                        </Form>
+                        <h2>Suggested</h2>
+                        <Form>
+                            {this.renderSuggested.call(window)}
+                        </Form>
+                        <h2>Selected</h2>
+                        <div key={this.props.getIngredients().toString()}>{this.renderSelected.call(window)}</div>
+                        <Button onClick={() => this.props.setStep("home")}>Submit</Button>
+                    </div>
+                );
+            }}
+            </AzureAD>
         );
     }
 

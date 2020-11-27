@@ -28,13 +28,15 @@ export default class Preferences extends Component<PreferenceProps, {}>{
         };
 
         const linkStyle = {
-            color: "white"
+            color: "white",
+            fontFamily: 'Poppins'
         };
 
         const greetingStyle = {
             marginTop: 70,
             color: "#685DEA",
-            textAlign: 'center' as 'center'
+            textAlign: 'center' as 'center',
+            fontFamily: 'Poppins'
         };
 
         const dropdownAlign = {
@@ -44,17 +46,19 @@ export default class Preferences extends Component<PreferenceProps, {}>{
 
         const dropdownColor = {
             backgroundColor: "#685DEA",
-            
+            fontFamily: 'Poppins'
         };
 
         const formStyle = {
-            width: 406
+            width: 406,
+            fontFamily: 'Poppins'
         };
 
         const nextStyle = {
             textAlign: 'center' as 'center',
             marginTop: 50,
-            backgroundColor: "#685DEA"
+            backgroundColor: "#685DEA",
+            fontFamily: 'Poppins'
         };
 
         return (
@@ -123,7 +127,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                 <Row className="justify-content-md-center">
                                     <Col xs={12} sm={4} md={4}>
                                         <Form.Group controlId="formBasicEquipment" style={dropdownAlign}>
-                                            <Form.Label>What kitchen equipment do you own?</Form.Label>
+                                            <Form.Label style={formStyle}>What kitchen equipment do you own?</Form.Label>
                                             <Form.Control style={formStyle} onChange={(e) => this.props.setEquipment(e.currentTarget.value)} type="text" placeholder="Enter equipment" /> 
                                         </Form.Group>
                                     </Col>
