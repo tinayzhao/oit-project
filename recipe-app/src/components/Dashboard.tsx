@@ -12,6 +12,7 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
     diet: string;
     intolerances: string;
     step: string;
+    recipes: any[];
     
     constructor(props: any) {
         super(props);
@@ -21,6 +22,7 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
         this.diet = "";
         this.intolerances = "";
         this.step = "preferences";
+        this.recipes = [];
         this.state = {
             ingredients: []
         }
@@ -60,8 +62,65 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
         this.forceUpdate();
     }
 
+    queryRecipes = () => {
+        let endpoint : string = "https://api.spoonacular.com/recipes/complexSearch?";
+        if (this.cuisine.length > 0) {
+            endpoint += "cuisine=" + this.cuisine;
+        }
+        if (this.mealType.length > 0) {
+            endpoint += "&mealType=" + this.mealType;
+        }
+        if (this.equipment.length > 0) {
+            endpoint += "&equipment=" + this.equipment;
+        }
+        if (this.diet.length > 0) {
+            endpoint += "&diet=" + this.diet;
+        }
+        if (this.intolerances.length > 0) {
+            endpoint += "&intolerances=" + this.intolerances;
+        }
+        if (this.state.ingredients.length > 0) {
+            endpoint += "&includeIngredients=" + this.state.ingredients.join(",");
+        }
+        endpoint += "&apiKey=" + process.env.REACT_APP_SPOONACULAR_API_KEY; 
+        console.log(endpoint);
+        fetch(endpoint, {
+            "method": "GET"
+        })
+        .then(resp => {
+            return resp.json();
+        }) 
+        .then(json => {
+            console.log(json);
+            json.results.forEach((recipe: 
+                {   
+                    id: number; 
+                    image: string; 
+                    imageType: string; 
+                    likes: number; 
+                    missedIngredientCount: number, 
+                    title: string, 
+                    usedIngredientCount: number 
+                }
+                ) => {
+                console.log(recipe);
+                // this.recipes.push(recipe);
+                this.recipes.push(
+                    (
+                        <div className="recipeSlide" id={recipe.id.toString()}>
+                            <img className="recipeImage" src = {recipe.image }alt={recipe.title}></img>
+                            <h1 className="recipeTitle">{recipe.title}</h1>
+                        </div>
+                    )
+                );
+            });
+            console.log(this.recipes);
+        })
+        .catch(err => {
+	        console.error(err);
+        });
+    }
     
-
     render() {
         const preferenceProps = {
             setCuisine: this.setCuisine.bind(this),
@@ -85,29 +144,6 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
               slidesToSlide: 6 // optional, default to 1.
             }
         };
-    
-        const recipes = [
-            { 
-                id: "1", 
-                title: "Pasta 1", 
-                summary: "lorem ipsum lorem ipsum ayo lorem ipsum lorem ipsum", 
-                image: "https://spoonacular.com/recipeImages/716429-312x231.jpg" 
-            },
-            { 
-                id: "2", 
-                title: "Pasta 2", 
-                summary: "lorem ipsum lorem ipsum ayo lorem ipsum lorem ipsum", 
-                image: "https://spoonacular.com/recipeImages/715538-312x231.jpg" 
-            }
-        ];
-
-        const recipeItems = recipes.map(recipe => (
-            <div className="recipeSlide" id={recipe.id}>
-                <img className="recipeImage" src = {recipe.image }alt={recipe.title}></img>
-                <h1 className="recipeTitle">{recipe.title}</h1>
-                <p className="recipeSummary">{recipe.summary}</p>
-            </div>
-        ));
 
         let comp : any;
         if (this.step === "preferences") {
@@ -115,6 +151,8 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
         } else if (this.step === "pantry") {
             comp = <Pantry {... pantryProps} />
         } else {
+            this.queryRecipes();
+            console.log("recipes are " + this.recipes);
             comp = 
                 <div>
                     <Carousel
@@ -132,7 +170,7 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
                     >
-                        {recipeItems}
+                        {this.recipes}
                     </Carousel>
             </div>
         }

@@ -13,7 +13,6 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
 
     //search change
     onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("CHECKING");
         const val = e.currentTarget.value;
         const endpoint = 
         "https://api.spoonacular.com/food/ingredients/autocomplete?query=" 
