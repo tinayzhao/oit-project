@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/home" component={Dashboard}/>
         <Route path="/preferences" component={Preferences}/>
         <Route path="/pantry" component={Pantry} />
-        {/* <Redirect from="/" to="/preferences" /> */}
+        <Redirect from="/" to="/welcome" />
     </Router>
     </div>
     

@@ -104,7 +104,6 @@ export default class Dashboard extends Component<{}, {ingredients: string[]}>{
                 }
                 ) => {
                 console.log(recipe);
-                // this.recipes.push(recipe);
                 this.recipes.push(
                     (
                         <div className="recipeSlide" id={recipe.id.toString()}>
