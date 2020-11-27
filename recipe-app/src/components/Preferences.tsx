@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Dropdown, Nav } from 'react-bootstrap';
+import { Form, Button, Dropdown, Nav, Row, Col } from 'react-bootstrap';
 import { authProvider } from "./authProvider";
 import {
     AzureAD,
@@ -23,20 +23,54 @@ export default class Preferences extends Component<PreferenceProps, {}>{
     }
 
     render = () => {
+        const navStyle = {
+            backgroundColor: "#685DEA"
+        };
+
+        const linkStyle = {
+            color: "white"
+        };
+
+        const greetingStyle = {
+            marginTop: 70,
+            color: "#685DEA",
+            textAlign: 'center' as 'center'
+        };
+
+        const dropdownAlign = {
+            textAlign: 'center' as 'center',
+            marginTop: 30
+        };
+
+        const dropdownColor = {
+            backgroundColor: "#685DEA",
+            
+        };
+
+        const formStyle = {
+            width: 406
+        };
+
+        const nextStyle = {
+            textAlign: 'center' as 'center',
+            marginTop: 50,
+            backgroundColor: "#685DEA"
+        };
+
         return (
             <AzureAD provider={authProvider}>
                 {({ login, logout, accountInfo, authenticationState, error}: IAzureADFunctionProps) => {
                     return (
                         <div>
-                            <Nav className="justify-content-end">
+                            <Nav className="justify-content-end" style={navStyle}>
                                 <Nav.Item>
-                                    <Nav.Link onSelect={logout}>Sign Out</Nav.Link>
+                                    <Nav.Link style={linkStyle} onClick={logout} href="#welcome">Sign Out</Nav.Link>
                                 </Nav.Item>
                             </Nav>
-                            <h1>Hello{accountInfo != null ? " " + accountInfo.account.name : ""}! 👋 Let's get to know you better.</h1>
+                            <h3 style={greetingStyle}>Hello{accountInfo != null ? " " + accountInfo.account.name : ""} 👋 Let's get to know you better!</h3>
                             <Form>
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="primary" id="dropdown-basic">What's your everyday cuisine?</Dropdown.Toggle>
+                                <Dropdown style={dropdownAlign}>
+                                    <Dropdown.Toggle style={dropdownColor} id="dropdown-basic">What's your everyday cuisine?</Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={() => this.props.setCuisine("African")}>African</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.props.setCuisine("American")}>American</Dropdown.Item>
@@ -66,8 +100,8 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                     </Dropdown.Menu>
                                 </Dropdown>
     
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="primary" id="dropdown-basic">What meal type would you like?</Dropdown.Toggle>
+                                <Dropdown style={dropdownAlign}>
+                                    <Dropdown.Toggle style={dropdownColor} id="dropdown-basic">What meal type would you like?</Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={() => this.props.setMealType("maincourse")}>Main Course</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.props.setMealType("sidedish")}>Side Dish</Dropdown.Item>
@@ -86,13 +120,18 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                     </Dropdown.Menu>
                                 </Dropdown>
     
-                                <Form.Group controlId="formBasicEquipment">
-                                    <Form.Label>What kitchen equipment do you own?</Form.Label>
-                                    <Form.Control onChange={(e) => this.props.setEquipment(e.currentTarget.value)} type="text" placeholder="Enter equipment" /> 
-                                </Form.Group>
+                                <Row className="justify-content-md-center">
+                                    <Col xs={12} sm={4} md={4}>
+                                        <Form.Group controlId="formBasicEquipment" style={dropdownAlign}>
+                                            <Form.Label>What kitchen equipment do you own?</Form.Label>
+                                            <Form.Control style={formStyle} onChange={(e) => this.props.setEquipment(e.currentTarget.value)} type="text" placeholder="Enter equipment" /> 
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                
     
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="primary" id="dropdown-basic">Are you following any diets?</Dropdown.Toggle>
+                                <Dropdown style={dropdownAlign}>
+                                    <Dropdown.Toggle style={dropdownColor} id="dropdown-basic">Are you following any diets?</Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={() => this.props.setDiet("glutenfree")}>Gluten Free</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.props.setDiet("ketogenic")}>Ketogenic</Dropdown.Item>
@@ -107,8 +146,8 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                     </Dropdown.Menu>
                                 </Dropdown>
     
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="primary" id="dropdown-basic">Any food intolerances?</Dropdown.Toggle>
+                                <Dropdown style={dropdownAlign}>
+                                    <Dropdown.Toggle style={dropdownColor} id="dropdown-basic">Any food intolerances?</Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={() => this.props.setIntolerances("diary")}>Diary</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.props.setIntolerances("egg")}>Egg</Dropdown.Item>
@@ -124,10 +163,15 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                         <Dropdown.Item onClick={() => this.props.setIntolerances("wheat")}>Wheat</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-                                
-                                    <Button onClick={() => this.props.setStep("pantry")} variant="primary" type="submit">
-                                        Next
-                                    </Button>
+
+                                <Row className="justify-content-md-center">
+                                    {/* <Col xs={12} sm={5} md={3}> */}
+                                        <Button onClick={() => this.props.setStep("pantry")} style={nextStyle} type="submit">
+                                            Next
+                                        </Button>
+                                    {/* </Col> */}
+                                </Row>
+                                    
                             </Form>
                         </div>
                     );}}
