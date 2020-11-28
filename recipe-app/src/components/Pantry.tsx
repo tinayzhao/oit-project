@@ -131,8 +131,6 @@ export default class Pantry extends Component<{setIngredients: Function, getIngr
             marginLeft: 5
         };
 
-        
-
         return (
             <AzureAD provider={authProvider}>
             {({ login, logout, accountInfo, authenticationState, error}: IAzureADFunctionProps) => {

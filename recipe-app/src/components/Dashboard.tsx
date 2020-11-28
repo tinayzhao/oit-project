@@ -115,9 +115,9 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
         }) 
         .then(json => {
             console.log(json);
-            const recipeSlide = {
-                padding: 20
-            };
+            // const recipeSlide = {
+            //     padding: 20
+            // };
             json.results.forEach((recipe: 
                 {   
                     id: number; 
@@ -179,10 +179,15 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
         const responsive = {
             desktop: {
                 breakpoint: { max: 3000, min: 1024 },
-                items: 4
-                // slidesToSlide: 3 //optional, default to 1.
+                items: 5,
+                slidesToSlide: 3 //optional, default to 1.
                 // partialVisibilityGutter: 40
             }
+        };
+
+        const align = {
+            marginTop: 50,
+            marginLeft: 50
         };
 
         let comp : any;
@@ -194,7 +199,7 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
             this.queryRecipes();
             console.log("recipes are " + this.recipes);
             comp = 
-                <div>
+                <div style={align}>
                     <Carousel
                         swipeable={false}
                         draggable={true}
@@ -213,6 +218,7 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
                         // itemClass="carousel-item-padding-30-px"
                     >
                         {/* <CardDeck> */}
+                            {/* {this.recipes.length != 0 ? this.recipes : "No results"} */}
                             {this.recipes}
                         {/* </CardDeck> */}
                     </Carousel>
