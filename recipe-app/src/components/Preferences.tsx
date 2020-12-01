@@ -14,6 +14,10 @@ import {
     setDiet: Function;
     setIntolerances: Function;
     goForward: Function;
+    getCuisine: Function;
+    getMealType: Function;
+    getDiet: Function;
+    getIntolerances: Function;
   }
 
 export default class Preferences extends Component<PreferenceProps, {}>{
@@ -65,6 +69,13 @@ export default class Preferences extends Component<PreferenceProps, {}>{
             fontFamily: 'Poppins'
         };
 
+        const selectionStyle = {
+            textAlign: 'center' as 'center',
+            fontFamily: 'Poppins',
+            marginTop: -30,
+            marginLeft: 450
+        }
+
         return (
             <AzureAD provider={authProvider}>
                 {({ login, logout, accountInfo, authenticationState, error}: IAzureADFunctionProps) => {
@@ -102,6 +113,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                         <Dropdown.Item onClick={() => this.props.setCuisine("Vietnamese")}>Vietnamese</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
+                                <p style={selectionStyle}>{this.props.getCuisine() != "" ? this.props.getCuisine() + " Selected!" : "Nothing Selected!"}</p>
     
                                 <Dropdown style={dropdownAlign}>
                                     <Dropdown.Toggle style={dropdownColor} id="dropdown-basic">What meal type would you like?</Dropdown.Toggle>
@@ -122,6 +134,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                         <Dropdown.Item onClick={() => this.props.setMealType("drink")}>Drink</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
+                                <p style={selectionStyle}>{this.props.getMealType() != "" ? this.props.getMealType() + " Selected!" : "Nothing Selected!"}</p>
     
                                 <Row className="justify-content-md-center">
                                     <Col xs={12} sm={4} md={4}>
@@ -148,6 +161,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                         <Dropdown.Item onClick={() => this.props.setDiet("whole30")}>Whole30</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
+                                <p style={selectionStyle}>{this.props.getDiet() != "" ? this.props.getDiet() + " Selected!" : "Nothing Selected!"}</p>
     
                                 <Dropdown style={dropdownAlign}>
                                     <Dropdown.Toggle style={dropdownColor} id="dropdown-basic">Any food intolerances?</Dropdown.Toggle>
@@ -166,6 +180,7 @@ export default class Preferences extends Component<PreferenceProps, {}>{
                                         <Dropdown.Item onClick={() => this.props.setIntolerances("wheat")}>Wheat</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
+                                <p style={selectionStyle}>{this.props.getIntolerances() != "" ? this.props.getIntolerances() + " Selected!" : "Nothing Selected!"}</p>
 
                                 <Row className="justify-content-md-center">
                                     {/* <Col xs={12} sm={5} md={3}> */}

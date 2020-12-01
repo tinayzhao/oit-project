@@ -11,51 +11,90 @@ import {
     IAzureADFunctionProps
   } from "react-aad-msal";
 
-export default class Dashboard extends Component<{}, {ingredients: string[], step: string}>{
 
+  interface DashboardState {
+    ingredients: string[];
+    step: string;
     cuisine: string;
     mealType: string;
-    equipment: string;
     diet: string;
     intolerances: string;
+  }
+
+export default class Dashboard extends Component<{}, DashboardState>{
+
+    // cuisine: string;
+    // mealType: string;
+    equipment: string;
+    // diet: string;
+    // intolerances: string;
     recipes: any[];
     pages: string[];
     pageIdx: number;
     
     constructor(props: any) {
         super(props);
-        this.cuisine = "";
-        this.mealType = "";
+        // this.cuisine = "";
+        // this.mealType = "";
         this.equipment = "";
-        this.diet = "";
-        this.intolerances = "";
+        // this.diet = "";
+        // this.intolerances = "";
         this.recipes = [];
         this.pages = ["preferences", "pantry", "home"];
         this.pageIdx = 0;
         this.state = {
             ingredients: [],
-            step: "preferences"
+            step: "preferences",
+            cuisine: "",
+            mealType: "",
+            diet: "",
+            intolerances: ""
         }
     }
 
     setCuisine(cuisine: string) {
-        this.cuisine = cuisine;
+        // this.cuisine = cuisine;
+        this.setState({cuisine: cuisine});
     }
 
+    getCuisine() {
+        // return this.cuisine;
+        return this.state.cuisine;
+    }
+ 
     setMealType(mealType: string) {
-        this.mealType = mealType;
+        // this.mealType = mealType;
+        this.setState({mealType: mealType});
+    }
+
+    getMealType() {
+        // return this.mealType;
+        return this.state.mealType;
     }
 
     setEquipment(equipment: string) {
         this.equipment = equipment;
+        // this.setState({equipment: equipment});
     }
 
     setDiet(diet: string) {
-        this.diet = diet;
+        // this.diet = diet;
+        this.setState({diet: diet});
+    }
+
+    getDiet() {
+        // return this.diet;
+        return this.state.diet;
     }
 
     setIntolerances(intolerances: string) {
-        this.intolerances = intolerances;
+        // this.intolerances = intolerances;
+        this.setState({intolerances: intolerances});
+    }
+
+    getIntolerances() {
+        // return this.intolerances;
+        return this.state.intolerances;
     }
 
     setIngredients = (ingredients: string[]) => {
@@ -87,20 +126,20 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
 
     queryRecipes = () => {
         let endpoint : string = "https://api.spoonacular.com/recipes/complexSearch?";
-        if (this.cuisine.length > 0) {
-            endpoint += "cuisine=" + this.cuisine;
+        if (this.state.cuisine.length > 0) {
+            endpoint += "cuisine=" + this.state.cuisine;
         }
-        if (this.mealType.length > 0) {
-            endpoint += "&mealType=" + this.mealType;
+        if (this.state.mealType.length > 0) {
+            endpoint += "&mealType=" + this.state.mealType;
         }
         if (this.equipment.length > 0) {
             endpoint += "&equipment=" + this.equipment;
         }
-        if (this.diet.length > 0) {
-            endpoint += "&diet=" + this.diet;
+        if (this.state.diet.length > 0) {
+            endpoint += "&diet=" + this.state.diet;
         }
-        if (this.intolerances.length > 0) {
-            endpoint += "&intolerances=" + this.intolerances;
+        if (this.state.intolerances.length > 0) {
+            endpoint += "&intolerances=" + this.state.intolerances;
         }
         if (this.state.ingredients.length > 0) {
             endpoint += "&includeIngredients=" + this.state.ingredients.join(",");
@@ -166,7 +205,11 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
             setEquipment: this.setEquipment.bind(this),
             setDiet: this.setDiet.bind(this),
             setIntolerances: this.setIntolerances.bind(this),
-            goForward: this.goForward.bind(this)
+            goForward: this.goForward.bind(this),
+            getCuisine: this.getCuisine.bind(this),
+            getMealType: this.getMealType.bind(this),
+            getDiet: this.getDiet.bind(this),
+            getIntolerances: this.getIntolerances.bind(this)
         };
 
         const pantryProps = {
