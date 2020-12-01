@@ -5,7 +5,6 @@ import Dashboard from './components/Dashboard';
 import Preferences from './components/Preferences';
 import Pantry from './components/Pantry';
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
 
 const App = () => {
 

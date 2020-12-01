@@ -3,7 +3,7 @@ import Pantry from './Pantry';
 import Preferences from './Preferences';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Nav, Row, Col, Card, CardDeck } from 'react-bootstrap';
+import { Nav, Card} from 'react-bootstrap';
 import { authProvider } from "./authProvider";
 import {
     AzureAD,
@@ -130,23 +130,24 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
                 }
                 ) => {
                 console.log(recipe);
+                //hard-coded line breaks based on title size so cards are the same size
+                let space: any;
+                if (recipe.title.length < 23) {
+                    space = <div><br></br><br></br></div>;
+                } else if (recipe.title.length < 46) {
+                    space = <br></br>;
+                } 
                 this.recipes.push(
                     (
-                        <Card style={{ width: '18rem' }}>
+                        <Card style={{ width: '17rem' }}>
                             <Card.Img variant="top" src={recipe.image} />
                             <Card.Body>
                                 <Card.Title>{recipe.title}</Card.Title>
-                                <a href={"https://spoonacular.com/recipes/link-" + recipe.id}>View Recipe</a>
-                                {/* <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
-                                </Card.Text> */}
+                                {space}
+                                <Card.Text>{"Missing " + recipe.missedIngredientCount + " ingredients"}</Card.Text>
+                                <Card.Text><a href={"https://spoonacular.com/recipes/link-" + recipe.id} target="_blank">View Recipe</a></Card.Text>
                             </Card.Body>
                         </Card>
-                        // <div style={recipeSlide} id={recipe.id.toString()}>
-                        //     <img src={recipe.image} alt={recipe.title}></img>
-                        //     <h3>{recipe.title}</h3>
-                        // </div>
                     )
                 );
             });
@@ -166,20 +167,18 @@ export default class Dashboard extends Component<{}, {ingredients: string[], ste
             setDiet: this.setDiet.bind(this),
             setIntolerances: this.setIntolerances.bind(this),
             goForward: this.goForward.bind(this)
-            // setStep: this.setStep.bind(this)
         };
 
         const pantryProps = {
             setIngredients: this.setIngredients.bind(this),
             getIngredients: this.getIngredients.bind(this),
             goForward: this.goForward.bind(this)
-            // setStep: this.setStep.bind(this)
         };
 
         const responsive = {
             desktop: {
                 breakpoint: { max: 3000, min: 1024 },
-                items: 5,
+                items: 4,
                 slidesToSlide: 3 //optional, default to 1.
                 // partialVisibilityGutter: 40
             }
