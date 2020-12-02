@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/cef318ad-0c20-4918-b2b6-41495a3923f2/resourceGroups/RecipeApp/providers/Microsoft.Web/sites/food-book",
+    "appService.deploySubpath": "."
+}
