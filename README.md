@@ -1,9 +1,8 @@
-<h1 align="center">FoodBook</h1>
+<h1 align="center">Foodbook</h1>
 <p align="center"> <a href="https://docs.google.com/presentation/d/1qu-WfNe-H9LO2Jh2ofA-WUcw84bMHuw7McAtOpojhZM/edit?usp=sharing">Slides</a> | <a href="https://youtu.be/TIk22uu2qOI">Video Presentation</a> | <a href="https://www.figma.com/file/Vu2ulxF5IA7AKLqP5w9tJO/Food-Book?node-id=0%3A1">Figma</a> </p>
-FoodBook is a TypeScript-React application that generates existing Spoonacular recipes based on user preferences and their current ingredients. 
+Foodbook is a TypeScript-React application that presents the user with existing Spoonacular recipes based on their preferences and the current ingredients in their pantry.
 
 Libraries: [Spoonacular API](https://spoonacular.com/food-api/docs), [React AAD Msal](https://github.com/syncweek-react-aad/react-aad), [React Router Dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom), [React Bootstrap](https://github.com/react-bootstrap/react-bootstrap), [React Multi Carousel](https://github.com/YIZHUANG/react-multi-carousel)
-
 
 
 ## Weekly progress
